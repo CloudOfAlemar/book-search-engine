@@ -31,6 +31,7 @@ const typeDefs = `
     addUser(username: String, email: String, password: String): Auth
     login(email: String, password: String): Auth
     saveBook(bookInfo: BookInfo): User
+    deleteBook(bookId: String): User
   }
 
   input BookInfo {
