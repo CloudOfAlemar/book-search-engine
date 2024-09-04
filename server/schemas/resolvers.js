@@ -8,6 +8,12 @@ const resolvers = {
       const users = await User.find({});
       return users;
     },
+    me: async (parent, args, context) => {
+      console.log(`Context:`, context.user);
+      const foundUser = await User.findOne({ _id: context.user._id });
+      console.log(`found user:`, foundUser);
+      return foundUser;
+    },
     searchGoogleBooks: async (parent, { query }) => {
       try {
         const response = await fetch(
@@ -53,6 +59,14 @@ const resolvers = {
 
       const token = signToken(user);
       return { token, user };
+    },
+    saveBook: async (parent, { bookInfo }, { user }) => {
+      const foundUser = await User.findOneAndUpdate(
+        { _id: user._id },
+        { $addToSet: { savedBooks: bookInfo } },
+        { new: true, runValidators: true }
+      );
+      return foundUser;
     },
   },
 };

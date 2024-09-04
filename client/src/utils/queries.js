@@ -12,3 +12,21 @@ export const QUERY_GOOGLE_BOOKS = gql`
     }
   }
 `;
+
+export const QUERY_ME = gql`
+  query getMe {
+    me {
+      _id
+      username
+      email
+      savedBooks {
+        bookId
+        authors
+        title
+        description
+        image
+        link
+      }
+    }
+  }
+`;

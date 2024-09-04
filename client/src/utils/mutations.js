@@ -23,3 +23,21 @@ export const LOGIN_USER = gql`
     }
   }
 `;
+
+export const SAVE_BOOK = gql`
+  mutation saveBook($bookInfo: BookInfo) {
+    saveBook(bookInfo: $bookInfo) {
+      _id
+      username
+      email
+      savedBooks {
+        bookId
+        authors
+        title
+        description
+        image
+        link
+      }
+    }
+  }
+`;
