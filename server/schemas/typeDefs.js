@@ -23,6 +23,7 @@ const typeDefs = `
 
   type Query {
     users: [User]
+    searchGoogleBooks(query: String): [Book]
   }
 
   type Mutation {
